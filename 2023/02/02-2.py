@@ -25,7 +25,6 @@ For each game, find the minimum set of cubes that must have been present. What i
 """
 
 import re
-from pprint import pprint
 class Solution():
     def __init__(self, dir) -> None:
         self.dir = dir
@@ -95,4 +94,4 @@ class Solution():
 
 s = Solution("2023/02/input.txt")
 
-pprint(s.sum)
+print(s.sum)
