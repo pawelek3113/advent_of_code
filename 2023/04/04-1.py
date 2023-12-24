@@ -35,19 +35,25 @@ So, in this example, the Elf's pile of scratchcards is worth 13 points.
 Take a seat in the large pile of colorful cards. How many points are they worth in total?
 """
 
-class Solution():
+
+class Solution:
     def __init__(self, dir) -> None:
         self.dir = dir
         self.cards = self.get_cards()
         self.points = self.get_points()
-    
-    def get_cards(self) -> list[dict[str: list[int]]]:
+
+    def get_cards(self) -> list[dict[str : list[int]]]:
         cards = []
         with open(self.dir, "r", encoding="UTF-8") as file:
             pile = file.read().splitlines()
             for card in pile:
                 winning_numbers, numbers = card.split(": ")[1].split(" | ")
-                cards.append({"winning_numbers": [int(n) for n in winning_numbers.split()], "numbers": [int(n) for n in numbers.split()]})
+                cards.append(
+                    {
+                        "winning_numbers": [int(n) for n in winning_numbers.split()],
+                        "numbers": [int(n) for n in numbers.split()],
+                    }
+                )
         return cards
 
     def get_points(self) -> int:
@@ -58,11 +64,12 @@ class Solution():
             for num in card["numbers"]:
                 if num in card["winning_numbers"]:
                     win_cards_amount += 1
-            
+
             if win_cards_amount != 0:
-                points += pow(2, win_cards_amount-1)
+                points += pow(2, win_cards_amount - 1)
 
         return points
+
 
 s = Solution("2023/04/input.txt")
 

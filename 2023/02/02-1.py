@@ -30,13 +30,14 @@ Determine which games would have been possible if the bag had been loaded with o
 
 import re
 
-class Solution():
+
+class Solution:
     def __init__(self, dir) -> None:
         self.dir = dir
         self.games = self.get_games()
         self.games_possibility = self.determine_possibility()
         self.sum = self.get_sum()
-    
+
     def get_games(self) -> list[list[dict]]:
         games = []
         with open(self.dir, "r", encoding="UTF-8") as file:
@@ -44,7 +45,7 @@ class Solution():
                 pattern = r"^Game \d+:"
                 sets = re.sub(pattern, "", line).strip().split(";")
                 sets = [set.strip() for set in sets]
-                
+
                 sets_dicts = []
 
                 for set in sets:
@@ -57,9 +58,9 @@ class Solution():
                     sets_dicts.append(dict)
 
                 games.append(sets_dicts)
-        
+
         return games
-    
+
     def determine_possibility(self) -> list[bool]:
         possibilty_of_games = []
 
@@ -79,11 +80,11 @@ class Solution():
                     if color == "green":
                         if value > GREEN:
                             possible = False
-                    
+
                     if color == "blue":
                         if value > BLUE:
                             possible = False
-                    
+
                 if not possible:
                     break
 
@@ -96,9 +97,9 @@ class Solution():
         for idx, game in enumerate(self.games_possibility, 1):
             if game:
                 sum += idx
-        
+
         return sum
-       
+
 
 s = Solution("2023/02/input.txt")
 

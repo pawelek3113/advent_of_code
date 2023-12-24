@@ -24,7 +24,8 @@ In this example, the calibration values of these four lines are 12, 38, 15, and 
 Consider your entire calibration document. What is the sum of all of the calibration values?
 """
 
-class Solution():
+
+class Solution:
     def __init__(self, file) -> None:
         self.file = file
         self.input = self.get_input()
@@ -34,7 +35,7 @@ class Solution():
     def get_input(self) -> list[str]:
         with open(self.file, "r", encoding="UTF-8") as f:
             return f.read().splitlines()
-        
+
     def get_combined_digits(self) -> list[int]:
         combined_digits = []
         for l in self.input:
@@ -49,7 +50,7 @@ class Solution():
                     break
 
             combined_digits.append(int(num))
-        
+
         return combined_digits
 
     def get_sum(self) -> int:
@@ -58,7 +59,7 @@ class Solution():
             sum += num
 
         return sum
-        
+
 
 s = Solution("2023/01/input.txt")
 print(s.sum)

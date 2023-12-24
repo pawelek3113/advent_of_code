@@ -19,7 +19,8 @@ In this example, the calibration values are 29, 83, 13, 24, 42, 14, and 76. Addi
 What is the sum of all of the calibration values?
 """
 
-class Solution():
+
+class Solution:
     def __init__(self, file) -> None:
         self.file = file
         self.input = self.get_input()
@@ -29,18 +30,28 @@ class Solution():
     def get_input(self) -> list[str]:
         with open(self.file, "r", encoding="UTF-8") as f:
             return f.read().splitlines()
-        
+
     def get_combined_digits(self) -> list[int]:
         combined_digits = []
 
-        digits = {1: "one", 2: "two", 3: "three", 4: "four", 5: "five", 6: "six", 7: "seven", 8: "eight", 9: "nine", 0: "zero"}
+        digits = {
+            1: "one",
+            2: "two",
+            3: "three",
+            4: "four",
+            5: "five",
+            6: "six",
+            7: "seven",
+            8: "eight",
+            9: "nine",
+            0: "zero",
+        }
 
         for l in self.input:
             num = ""
 
-
             indexes = {}
-            
+
             for k, v in digits.items():
                 str_index = l.find(v)
                 digit_index = l.find(str(k))
@@ -49,7 +60,7 @@ class Solution():
                     index = min(str_index, digit_index)
                     if index == -1:
                         index = max(str_index, digit_index)
-                    dct = {index:k}
+                    dct = {index: k}
                     indexes.update(dct)
 
             num += str(indexes[min(indexes.keys())])
@@ -64,13 +75,13 @@ class Solution():
                     index = min(str_index, digit_index)
                     if index == -1:
                         index = max(str_index, digit_index)
-                    dct = {index:k}
+                    dct = {index: k}
                     jdexes.update(dct)
 
             num += str(jdexes[min(jdexes.keys())])
 
             combined_digits.append(int(num))
-        
+
         return combined_digits
 
     def get_sum(self) -> int:
@@ -79,7 +90,7 @@ class Solution():
             sum += num
 
         return sum
-        
+
 
 s = Solution("2023/01/input.txt")
 print(s.sum)

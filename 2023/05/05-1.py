@@ -98,6 +98,7 @@ What is the lowest location number that corresponds to any of the initial seed n
 
 import re
 
+
 class Solution:
     def __init__(self, dir) -> None:
         self.dir = dir
@@ -149,8 +150,8 @@ class Solution:
             return range["dest_start"] + seed - range["src_start"]
         else:
             return -1
-        
-    def _get_number(self, no, ranges): 
+
+    def _get_number(self, no, ranges):
         res = -1
         for range in ranges:
             res = self._is_in_range(no, range)
@@ -158,7 +159,7 @@ class Solution:
                 break
         if res == -1:
             return no
-        
+
         return res
 
     def get_locations(self) -> list[int]:
@@ -174,7 +175,6 @@ class Solution:
 
         locations = []
         for seed in self.seeds:
-
             no = seed
             for mapping in mappings:
                 ranges = self._get_ranges(mapping)
@@ -184,7 +184,7 @@ class Solution:
             locations.append(no)
 
         return locations
-    
+
     def get_lowest_location(self):
         return min(self.locations)
 

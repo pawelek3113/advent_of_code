@@ -20,7 +20,7 @@ What is the sum of all of the calibration values?
 """
 
 # include first and last letter
-# case: eightwo 
+# case: eightwo
 
 mapping = {
     "one": "o1e",
@@ -34,7 +34,8 @@ mapping = {
     "nine": "n9e",
 }
 
-class Solution():
+
+class Solution:
     def __init__(self, file) -> None:
         self.file = file
         self.input = self.map_input()
@@ -51,7 +52,6 @@ class Solution():
             data = data.replace(name, alias)
 
         return data.splitlines()
-
 
     def get_combined_digits(self) -> list[int]:
         combined_digits = []
@@ -75,7 +75,7 @@ class Solution():
             sum += num
 
         return sum
-        
+
 
 s = Solution("2023/01/input.txt")
 print(s.sum)

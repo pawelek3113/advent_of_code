@@ -33,44 +33,51 @@ Process all of the original and copied scratchcards until no more scratchcards a
 
 """
 
-class Solution():
+
+class Solution:
     def __init__(self, dir) -> None:
         self.dir = dir
         self.pile_of_cards = self.get_cards()
         self._save_amount_of_matches()
         self.sum = self.sum_number_of_instances()
-    
-    def get_cards(self) -> list[dict[str: list[int]]]:
+
+    def get_cards(self) -> list[dict[str : list[int]]]:
         cards = []
         with open(self.dir, "r", encoding="UTF-8") as file:
             pile = file.read().splitlines()
             for idx, card in enumerate(pile):
                 winning_numbers, numbers = card.split(": ")[1].split(" | ")
-                cards.append({"id": idx+1, "winning_numbers": [int(n) for n in winning_numbers.split()], "numbers": [int(n) for n in numbers.split()]})
-        
+                cards.append(
+                    {
+                        "id": idx + 1,
+                        "winning_numbers": [int(n) for n in winning_numbers.split()],
+                        "numbers": [int(n) for n in numbers.split()],
+                    }
+                )
+
         return cards
-    
-    def _get_amount_of_matches(self, card: dict[str: list[int]]):
+
+    def _get_amount_of_matches(self, card: dict[str : list[int]]):
         copies_amount = 0
         for num in card["numbers"]:
             if num in card["winning_numbers"]:
                 copies_amount += 1
 
         return copies_amount
-    
+
     def _save_amount_of_matches(self):
         for card in self.pile_of_cards:
             amount_of_matches = self._get_amount_of_matches(card)
             card["matching_numbers"] = amount_of_matches
 
     def _get_number_of_instances(self):
-        number_of_instances = {n: 1 for n in range(1, len(self.pile_of_cards)+1)}
+        number_of_instances = {n: 1 for n in range(1, len(self.pile_of_cards) + 1)}
 
         for card in self.pile_of_cards:
-            for i in range(1, card["matching_numbers"]+1):
+            for i in range(1, card["matching_numbers"] + 1):
                 if i <= len(self.pile_of_cards):
-                    for j in range(1, number_of_instances[card["id"]]+1):
-                        number_of_instances[i+card["id"]] += 1
+                    for j in range(1, number_of_instances[card["id"]] + 1):
+                        number_of_instances[i + card["id"]] += 1
 
         return number_of_instances
 

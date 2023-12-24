@@ -25,12 +25,14 @@ For each game, find the minimum set of cubes that must have been present. What i
 """
 
 import re
-class Solution():
+
+
+class Solution:
     def __init__(self, dir) -> None:
         self.dir = dir
         self.games = self.get_games()
         self.sum = self.get_sum()
-    
+
     def get_games(self) -> list[list[dict]]:
         games = []
         with open(self.dir, "r", encoding="UTF-8") as file:
@@ -38,7 +40,7 @@ class Solution():
                 pattern = r"^Game \d+:"
                 sets = re.sub(pattern, "", line).strip().split(";")
                 sets = [set.strip() for set in sets]
-                
+
                 sets_dicts = []
 
                 for set in sets:
@@ -51,7 +53,7 @@ class Solution():
                     sets_dicts.append(dict)
 
                 games.append(sets_dicts)
-        
+
         return games
 
     def get_fewest_cubes(self) -> list[tuple]:
@@ -64,15 +66,15 @@ class Solution():
                     if color == "red":
                         if amount > max_red:
                             max_red = amount
-                    
+
                     elif color == "green":
                         if amount > max_green:
                             max_green = amount
-                    
+
                     elif color == "blue":
                         if amount > max_blue:
                             max_blue = amount
-            
+
             games.append([max_red, max_green, max_blue])
 
         return games
@@ -80,8 +82,8 @@ class Solution():
     def get_powers(self):
         powers = []
         for red, green, blue in self.get_fewest_cubes():
-            powers.append(red*green*blue)
-        
+            powers.append(red * green * blue)
+
         return powers
 
     def get_sum(self) -> int:
@@ -90,7 +92,7 @@ class Solution():
             sum += power
 
         return sum
-       
+
 
 s = Solution("2023/02/input.txt")
 

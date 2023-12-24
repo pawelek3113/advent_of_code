@@ -50,7 +50,6 @@ for idx, line in enumerate(content):
     last_idx = 0
 
     for number in numbers:
-
         start_idx = line.find(number, last_idx)
         end_idx = len(str(number)) + start_idx - 1
 
@@ -92,7 +91,6 @@ results = {}
 for info in numbers_and_gears:
     for num, gear_poses in info.items():
         for gear_pos in gear_poses:
-            
             if gear_pos not in results.keys():
                 results[gear_pos] = [num]
             else:
@@ -101,7 +99,6 @@ for info in numbers_and_gears:
 
 sum = 0
 for gear_pos, numbers in results.items():
-
     if len(numbers) == 2:
         sum += reduce(mul, numbers)
 
