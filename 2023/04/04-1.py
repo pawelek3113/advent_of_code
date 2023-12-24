@@ -39,6 +39,7 @@ class Solution():
     def __init__(self, dir) -> None:
         self.dir = dir
         self.cards = self.get_cards()
+        self.points = self.get_points()
     
     def get_cards(self) -> list[dict[str: list[int]]]:
         cards = []
@@ -65,4 +66,4 @@ class Solution():
 
 s = Solution("2023/04/input.txt")
 
-print(s.get_points())
+print(s.points)
