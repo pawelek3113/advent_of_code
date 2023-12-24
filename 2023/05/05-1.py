@@ -189,6 +189,6 @@ class Solution:
         return min(self.locations)
 
 
-s = Solution("2023/05/example_input.txt")
+s = Solution("2023/05/input.txt")
 
 print(s.answer)
